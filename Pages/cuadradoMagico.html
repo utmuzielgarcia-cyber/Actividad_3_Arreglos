@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 2: Cuadrado Mágico</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body data-ejercicio="cuadradoMagico">
+    <header>
+        <h1>Ejercicio 2: Cuadrado Mágico</h1>
+        <p class="subtitle">Verificar si la matriz cuadrada ingresada cumple con la constante mágica.</p>
+    </header>
+    <main>
+        <section id="descripcion">
+            <h2>Descripción del Problema</h2>
+            <p>La aplicación solicitará el tamaño de la matriz ($N$) y luego los $N \times N$ valores. El programa analizará si las sumas de todas las filas, columnas y ambas diagonales coinciden con la constante mágica. Se requiere validar que las entradas sean números enteros y que el tamaño sea válido.</p>
+        </section>
+
+        <button id="btnIniciar" class="btn-primary">
+            INICIAR SOLICITUD y VERIFICACIÓN
+        </button>
+
+        <section id="resultados"></section>
+
+        <button onclick="volverAlMenu()" class="btn-secondary">
+            ← Volver al Menú Principal
+        </button>
+    </main>
+
+    <script src="../js/cuadradoMagico.js"></script>
+    <script src="../js/main.js"></script>
+</body>
+</html>
