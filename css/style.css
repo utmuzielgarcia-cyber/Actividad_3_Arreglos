@@ -8,7 +8,6 @@
     --color-link: #007bff;           /* Azul de enlaces */
     --color-adicional: #dc3545;      /* Rojo para ejercicios adicionales/errores */
     --color-success: #28a745;        /* Verde para botones primarios (Iniciar) */
-    --color-warning: #ffc107;        /* Amarillo para notas */
     --color-table-border: #dee2e6;   /* Borde de tablas */
     --font-family-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
@@ -19,7 +18,7 @@ body {
     font-family: var(--font-family-main);
     margin: 0;
     padding: 0;
-    background-color: #e9ecef; 
+    background-color: #f4f7f9; /* Fondo muy claro */
     color: var(--color-text);
     line-height: 1.6;
 }
@@ -28,9 +27,9 @@ body {
 header {
     background-color: var(--color-primary);
     color: white;
-    padding: 20px 40px;
-    margin-bottom: 30px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); 
+    padding: 30px 40px; /* Más padding vertical */
+    margin-bottom: 0; /* Quitar margen inferior */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 header h1 {
@@ -44,22 +43,23 @@ header h1 {
     margin: 0;
 }
 
-/* Contenido Principal (Main) - Alinear y ordenar componentes */
-main {
-    max-width: 900px;
-    margin: 0 auto;
+/* Contenido Principal (Main) - MEJORA VISUAL: Estilo de Tarjeta y centrado vertical */
+main.menu-container {
+    max-width: 650px; /* Hacer el contenedor del menú más estrecho */
+    margin: 40px auto; /* Centrarlo con más margen superior */
     padding: 30px;
     background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.08); 
+    border-radius: 10px; /* Bordes más redondeados */
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1); /* Sombra más pronunciada */
 }
 
 h2 {
     color: var(--color-primary);
-    border-bottom: 2px solid #ddd;
-    padding-bottom: 10px;
+    border-bottom: 2px solid #e0e0e0;
+    padding-bottom: 15px;
     margin-bottom: 25px;
-    font-size: 1.5em;
+    font-size: 1.4em; /* Ligeramente más pequeño */
+    text-align: center; /* Centrar el título del menú */
 }
 
 /* --- Estilos del Menú Principal (index.html) --- */
@@ -67,50 +67,69 @@ h2 {
 #menu-list {
     list-style-type: none;
     padding: 0;
+    counter-reset: menu-counter; /* Inicializar contador CSS */
 }
 
 #menu-list li {
-    background-color: var(--color-secondary);
-    margin: 10px 0;
+    background-color: white; /* El fondo es blanco, la lista tiene un borde */
+    margin: 8px 0;
     padding: 15px; 
-    border-radius: 4px;
-    transition: background-color 0.2s;
-    border-left: 5px solid var(--color-primary); 
+    border-radius: 6px; 
+    transition: background-color 0.2s, transform 0.1s;
+    border: 1px solid #ddd; /* Borde más sutil */
+    border-left: 5px solid transparent; /* Inicialmente transparente */
+    
+    /* MEJORA VISUAL: Estilo de ítem de lista */
+    display: flex;
+    align-items: center;
 }
 
 #menu-list li:hover {
-    background-color: #ddd;
+    background-color: #f0f8ff; /* Azul claro al pasar el ratón */
+    border-left-color: var(--color-link); /* Barra azul al pasar el ratón */
+    transform: translateY(-1px); /* Efecto 3D ligero */
 }
 
 #menu-list a {
     text-decoration: none;
-    color: var(--color-link);
+    color: var(--color-text); /* Texto oscuro por defecto */
     font-weight: 500;
     display: block; 
+    flex-grow: 1;
+}
+
+#menu-list a:hover {
+    color: var(--color-link); /* El texto se pone azul al hacer hover */
 }
 
 /* Resalta los ejercicios adicionales (8 y 9) */
 #menu-list li.adicional {
-    background-color: #f7e3e5;
+    background-color: #fffafa; /* Fondo muy ligero */
     color: var(--color-adicional);
-    font-weight: bold;
+    border: 1px dashed var(--color-adicional); /* Borde punteado */
     border-left-color: var(--color-adicional);
     cursor: default;
+    opacity: 0.8;
 }
 
 /* Estilo para el ítem "Salir" */
 #menu-list li:last-child {
     margin-top: 30px;
-    border-top: 1px solid #ccc;
-    padding-top: 15px;
+    padding: 15px;
     font-weight: bold;
     color: #6c757d;
+    border-top: 1px solid #e0e0e0;
     border-left: none;
+    background-color: var(--color-secondary);
     font-style: italic;
+    text-align: center;
+    border-radius: 6px;
+    cursor: default;
 }
 
-/* --- Estilos de Botones (Alineación y legibilidad) --- */
+/* --- Resto de Estilos (Mantenidos y mejorados) --- */
 
+/* Estilos de Botones */
 button {
     padding: 12px 25px;
     margin: 15px 10px 15px 0;
@@ -123,7 +142,7 @@ button {
 }
 
 .btn-primary {
-    background-color: var(--color-success); /* Verde para iniciar */
+    background-color: var(--color-success);
     color: white;
 }
 .btn-primary:hover {
@@ -131,15 +150,14 @@ button {
 }
 
 .btn-secondary {
-    background-color: #6c757d; /* Gris para volver */
+    background-color: #6c757d;
     color: white;
 }
 .btn-secondary:hover {
     background-color: #5a6268;
 }
 
-/* --- Estilos de Resultados, Análisis y Tablas (Evidencia y Formato) --- */
-
+/* Estilos de Resultados y Tablas */
 #resultados {
     margin-top: 25px;
     padding: 20px;
@@ -148,7 +166,6 @@ button {
     background-color: var(--color-secondary);
 }
 
-/* Contenedores de matrices para alineación */
 .matriz-container, .matrices-container {
     margin: 15px 0;
     padding: 15px;
@@ -161,14 +178,6 @@ button {
     background-color: #fff;
 }
 
-.resultados-grid {
-    display: flex;
-    gap: 30px;
-    flex-wrap: wrap;
-    margin-top: 20px;
-}
-
-/* Estilo para las tablas de matriz (salida de datos numéricos) */
 table.matriz {
     border-collapse: collapse;
     margin-top: 5px;
@@ -185,18 +194,6 @@ table.matriz td {
     min-width: 40px; 
 }
 
-/* Lista de resultados (e.g., conteo de ceros) */
-.list-results {
-    list-style-type: disc;
-    padding-left: 20px;
-}
-
-.list-results li {
-    padding: 5px 0;
-    border-bottom: 1px dotted #eee;
-}
-
-/* Mensajes de Error (Validación de excepciones) */
 .error {
     color: var(--color-adicional);
     font-weight: bold;
