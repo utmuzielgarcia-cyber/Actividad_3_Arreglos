@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 4: Matriz de Identidad</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .diagonal-uno {
+            background-color: #e6ffed; /* Fondo verde claro */
+            color: var(--color-success);
+        }
+    </style>
+</head>
+<body data-ejercicio="matrizIdentidad">
+    <header>
+        <h1>Ejercicio 4: Matriz de Identidad</h1>
+        <p class="subtitle">Crear una matriz cuadrada con 1's en la diagonal principal y 0's en las demás posiciones.</p>
+    </header>
+    <main>
+        <section id="descripcion">
+            <h2>Descripción del Problema</h2>
+            <p>La aplicación solicitará al usuario el tamaño N de la matriz cuadrada y generará la matriz de identidad N x N. Se validará que el tamaño introducido sea un número entero positivo.</p>
+        </section>
+
+        <button id="btnIniciar" class="btn-primary">
+            INICIAR ANÁLISIS y CÁLCULO
+        </button>
+
+        <section id="resultados"></section>
+
+        <button onclick="volverAlMenu()" class="btn-secondary">
+            ← Volver al Menú Principal
+        </button>
+    </main>
+
+    <script src="../js/matrizIdentidad.js"></script>
+    <script src="../js/main.js"></script>
+</body>
+</html>
