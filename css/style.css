@@ -1,0 +1,214 @@
+/* style.css - Estilos Base para el Proyecto de Arreglos y Matrices (POO en JS) */
+
+:root {
+    /* Variables de Color (Estandarización de la lógica visual) */
+    --color-primary: #004a7c;        /* Azul oscuro (UTM-like) */
+    --color-secondary: #f8f9fa;      /* Fondo claro del menú/resultados */
+    --color-text: #343a40;           /* Texto oscuro principal */
+    --color-link: #007bff;           /* Azul de enlaces */
+    --color-adicional: #dc3545;      /* Rojo para ejercicios adicionales/errores */
+    --color-success: #28a745;        /* Verde para botones primarios (Iniciar) */
+    --color-warning: #ffc107;        /* Amarillo para notas */
+    --color-table-border: #dee2e6;   /* Borde de tablas */
+    --font-family-main: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* --- Estilos Globales y de la Estructura --- */
+
+body {
+    font-family: var(--font-family-main);
+    margin: 0;
+    padding: 0;
+    background-color: #e9ecef; 
+    color: var(--color-text);
+    line-height: 1.6;
+}
+
+/* Estilo del Encabezado (Header) - Diseño claro y apreciable */
+header {
+    background-color: var(--color-primary);
+    color: white;
+    padding: 20px 40px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); 
+}
+
+header h1 {
+    font-size: 2.2em;
+    margin-bottom: 5px;
+}
+
+.subtitle {
+    font-size: 0.9em;
+    color: #b0c4de;
+    margin: 0;
+}
+
+/* Contenido Principal (Main) - Alinear y ordenar componentes */
+main {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 30px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.08); 
+}
+
+h2 {
+    color: var(--color-primary);
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 10px;
+    margin-bottom: 25px;
+    font-size: 1.5em;
+}
+
+/* --- Estilos del Menú Principal (index.html) --- */
+
+#menu-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+#menu-list li {
+    background-color: var(--color-secondary);
+    margin: 10px 0;
+    padding: 15px; 
+    border-radius: 4px;
+    transition: background-color 0.2s;
+    border-left: 5px solid var(--color-primary); 
+}
+
+#menu-list li:hover {
+    background-color: #ddd;
+}
+
+#menu-list a {
+    text-decoration: none;
+    color: var(--color-link);
+    font-weight: 500;
+    display: block; 
+}
+
+/* Resalta los ejercicios adicionales (8 y 9) */
+#menu-list li.adicional {
+    background-color: #f7e3e5;
+    color: var(--color-adicional);
+    font-weight: bold;
+    border-left-color: var(--color-adicional);
+    cursor: default;
+}
+
+/* Estilo para el ítem "Salir" */
+#menu-list li:last-child {
+    margin-top: 30px;
+    border-top: 1px solid #ccc;
+    padding-top: 15px;
+    font-weight: bold;
+    color: #6c757d;
+    border-left: none;
+    font-style: italic;
+}
+
+/* --- Estilos de Botones (Alineación y legibilidad) --- */
+
+button {
+    padding: 12px 25px;
+    margin: 15px 10px 15px 0;
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.btn-primary {
+    background-color: var(--color-success); /* Verde para iniciar */
+    color: white;
+}
+.btn-primary:hover {
+    background-color: #1e7e34;
+}
+
+.btn-secondary {
+    background-color: #6c757d; /* Gris para volver */
+    color: white;
+}
+.btn-secondary:hover {
+    background-color: #5a6268;
+}
+
+/* --- Estilos de Resultados, Análisis y Tablas (Evidencia y Formato) --- */
+
+#resultados {
+    margin-top: 25px;
+    padding: 20px;
+    border: 1px solid var(--color-table-border);
+    border-radius: 6px;
+    background-color: var(--color-secondary);
+}
+
+/* Contenedores de matrices para alineación */
+.matriz-container, .matrices-container {
+    margin: 15px 0;
+    padding: 15px;
+    border: 1px dashed #aaa;
+    border-radius: 4px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: flex-start;
+    background-color: #fff;
+}
+
+.resultados-grid {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+/* Estilo para las tablas de matriz (salida de datos numéricos) */
+table.matriz {
+    border-collapse: collapse;
+    margin-top: 5px;
+    background-color: white;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.05);
+    min-width: 150px; 
+}
+
+table.matriz td {
+    border: 1px solid var(--color-table-border);
+    padding: 8px 12px;
+    text-align: center;
+    font-weight: bold;
+    min-width: 40px; 
+}
+
+/* Lista de resultados (e.g., conteo de ceros) */
+.list-results {
+    list-style-type: disc;
+    padding-left: 20px;
+}
+
+.list-results li {
+    padding: 5px 0;
+    border-bottom: 1px dotted #eee;
+}
+
+/* Mensajes de Error (Validación de excepciones) */
+.error {
+    color: var(--color-adicional);
+    font-weight: bold;
+    padding: 10px;
+    background-color: #f8d7da;
+    border: 1px solid var(--color-adicional);
+    border-radius: 4px;
+    margin-bottom: 15px;
+}
+
+.nota {
+    color: var(--color-warning);
+    font-style: italic;
+    margin-top: 15px;
+}
