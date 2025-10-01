@@ -27,15 +27,18 @@ function setupEjercicio(nombreEjercicio) {
     // Mapeo de identificadores a nombres de Clases/Archivos (POO)
     // ESTE MAPEO DEBE CRECER CON CADA NUEVO EJERCICIO QUE IMPLEMENTES.
     const ejercicios = {
-        'conteoCeros': 'ConteoCeros',            // Ejercicio 1 (Implementado en el paso anterior)
-        'cuadradoMagico': 'CuadradoMagico',      // Ejercicio 2 (Pendiente)
+        'conteoCeros': 'ConteoCeros',             // Ejercicio 1 
+        'cuadradoMagico': 'CuadradoMagico',       // Ejercicio 2 (Pendiente)
         'operacionesMatrices': 'OperacionesMatrices', // Ejercicio 3 (Pendiente)
-        // ... (Agrega más ejercicios aquí: matrizIdentidad, sumaPromedio, etc.)
+        'matrizIdentidad': 'MatrizIdentidad',     // <<--- CORRECCIÓN AGREGADA
+        // ... (Agrega más ejercicios aquí: sumaPromedio, analisisVentas, etc.)
     };
 
     const className = ejercicios[nombreEjercicio];
 
     // 2. Validación y enlazado
+    // Se valida: 1) Que el botón exista, 2) Que haya un nombre de clase mapeado, 
+    // 3) Que la clase haya sido cargada globalmente por su respectivo script (.js)
     if (btnIniciar && className && typeof window[className] === 'function') {
         // Creamos una instancia de la clase de lógica (POO)
         const instanciaEjercicio = new window[className]();
@@ -49,7 +52,12 @@ function setupEjercicio(nombreEjercicio) {
     } else {
         // Muestra un error si la configuración falla.
         if (resultadosDiv) {
-             resultadosDiv.innerHTML = '<p class="error">Error de configuración: Clase de lógica no cargada o botón "iniciar" faltante.</p>';
+             // Verificamos si el className se encontró en el mapeo, pero no se cargó el script.
+             const errorMsg = className 
+                 ? `Error de carga: La clase '${className}' no se cargó correctamente (verifique el script tag).`
+                 : `Error de mapeo: El ID '${nombreEjercicio}' no está definido en main.js.`;
+             
+             resultadosDiv.innerHTML = `<p class="error">Error de configuración: ${errorMsg}</p>`;
         }
     }
 }
