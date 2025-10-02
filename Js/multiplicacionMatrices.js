@@ -1,26 +1,16 @@
-/**
- * Clase MultiplicacionMatrices para resolver el Ejercicio 8 (Adicional de Alto Nivel).
- * Implementa el producto de matrices (Producto Matricial).
- */
 class MultiplicacionMatrices {
 
-    /**
-     * Punto de entrada principal para ejecutar el análisis (Entrada, Proceso, Salida).
-     */
     async iniciarAnalisis() {
         const resultadosDiv = document.getElementById('resultados');
         resultadosDiv.innerHTML = '';
 
         try {
-            // 1. ENTRADA: Solicitar dimensiones y matrices
             const { N, M, P } = await this.solicitarDimensiones();
             const matrizA = await this.llenarMatriz('A', N, M);
             const matrizB = await this.llenarMatriz('B', M, P);
             
-            // 2. PROCESO: Multiplicación
             const matrizResultado = this.multiplicarMatrices(matrizA, matrizB, N, M, P);
 
-            // 3. SALIDA: Mostrar el análisis y el resultado
             resultadosDiv.innerHTML = this.mostrarAnalisis(matrizA, matrizB, N, M, P);
             resultadosDiv.innerHTML += this.mostrarResultados(matrizResultado);
 
@@ -29,11 +19,6 @@ class MultiplicacionMatrices {
         }
     }
 
-    // --- Métodos de Entrada y Validación ---
-
-    /**
-     * Solicita las dimensiones N, M, P, asegurando que la Matriz A (NxM) pueda multiplicarse por la Matriz B (MxP).
-     */
     solicitarDimensiones() {
         return new Promise((resolve, reject) => {
             let N, M, P;
@@ -51,9 +36,9 @@ class MultiplicacionMatrices {
                     continue;
                 }
                 
-                N = dims[0]; // Filas de A
-                M = dims[1]; // Columnas de A y Filas de B (deben ser iguales)
-                P = dims[2]; // Columnas de B
+                N = dims[0];
+                M = dims[1];
+                P = dims[2];
 
                 if (N > 0 && M > 0 && P > 0) {
                     entradaValida = true;
@@ -65,9 +50,6 @@ class MultiplicacionMatrices {
         });
     }
 
-    /**
-     * Solicita al usuario los valores para una matriz específica.
-     */
     llenarMatriz(nombre, filas, columnas) {
         return new Promise((resolve, reject) => {
             let matriz = [];
@@ -80,8 +62,7 @@ class MultiplicacionMatrices {
                                        .map(val => {
                                            const numVal = parseFloat(val.trim());
                                            if (isNaN(numVal)) {
-                                                // Admite decimales para un ejercicio de alto nivel
-                                                throw new Error("Introducir sólo números (decimales o enteros)."); 
+                                               throw new Error("Introducir sólo números (decimales o enteros)."); 
                                            }
                                            return numVal;
                                        });
@@ -96,31 +77,21 @@ class MultiplicacionMatrices {
         });
     }
 
-    // --- Lógica del Producto Matricial ---
-
-    /**
-     * Realiza la multiplicación de la Matriz A (NxM) por la Matriz B (MxP).
-     */
     multiplicarMatrices(matrizA, matrizB, N, M, P) {
-        // La matriz resultante será N x P
         let matrizResultado = [];
 
-        for (let i = 0; i < N; i++) { // Recorre Filas de A
+        for (let i = 0; i < N; i++) {
             matrizResultado[i] = [];
-            for (let j = 0; j < P; j++) { // Recorre Columnas de B
+            for (let j = 0; j < P; j++) {
                 let sumaProducto = 0;
-                for (let k = 0; k < M; k++) { // Recorre Columnas de A / Filas de B
-                    // La lógica central del producto matricial: (Fila A) x (Columna B)
+                for (let k = 0; k < M; k++) {
                     sumaProducto += matrizA[i][k] * matrizB[k][j];
                 }
-                // Almacenar el resultado redondeado
                 matrizResultado[i][j] = parseFloat(sumaProducto.toFixed(2));
             }
         }
         return matrizResultado;
     }
-
-    // --- Métodos de Presentación ---
 
     mostrarAnalisis(matrizA, matrizB, N, M, P) {
         let html = `
@@ -151,7 +122,6 @@ class MultiplicacionMatrices {
         `;
     }
 
-    // Utilidad: Genera la tabla HTML para la matriz
     matrizToHTML(matriz) {
         let html = '<table class="matriz">';
         for (const fila of matriz) {
@@ -170,5 +140,4 @@ class MultiplicacionMatrices {
     }
 }
 
-// Exponer la clase globalmente.
 window.MultiplicacionMatrices = MultiplicacionMatrices;
