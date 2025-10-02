@@ -1,32 +1,22 @@
-/**
- * Clase OperacionesMatrices para resolver el Ejercicio 3.
- * Realiza Suma, Resta, Producto simple y División simple de dos matrices 2x2.
- */
 class OperacionesMatrices {
 
     constructor() {
-        this.MATRIZ_SIZE = 2; // El tamaño es fijo: 2x2
+        this.MATRIZ_SIZE = 2;
     }
 
-    /**
-     * Punto de entrada principal para ejecutar el análisis (Entrada, Proceso, Salida).
-     */
     async iniciarAnalisis() {
         const resultadosDiv = document.getElementById('resultados');
         resultadosDiv.innerHTML = '';
         
         try {
-            // 1. ENTRADAS: Solicitud de las dos matrices 2x2
             const matriz1 = await this.solicitarMatriz(1);
             const matriz2 = await this.solicitarMatriz(2);
 
-            // 2. PROCESO: Realizar las operaciones
             const suma = this.sumarMatrices(matriz1, matriz2);
             const resta = this.restarMatrices(matriz1, matriz2);
             const producto = this.productoSimple(matriz1, matriz2);
             const division = this.divisionSimple(matriz1, matriz2);
 
-            // 3. SALIDA: Mostrar el análisis y los resultados
             resultadosDiv.innerHTML = this.mostrarAnalisis(matriz1, matriz2);
             resultadosDiv.innerHTML += this.mostrarResultados(suma, resta, producto, division);
 
@@ -35,11 +25,6 @@ class OperacionesMatrices {
         }
     }
 
-    /**
-     * Solicita al usuario los 4 valores de una matriz 2x2 (renglón por renglón).
-     * @param {number} num - El número de la matriz a solicitar (1 o 2).
-     * @returns {Promise<number[][]>} La matriz 2x2 llena.
-     */
     solicitarMatriz(num) {
         return new Promise((resolve, reject) => {
             let matriz = [];
@@ -55,14 +40,12 @@ class OperacionesMatrices {
                                        .map(val => {
                                            const numVal = parseFloat(val.trim());
                                            if (isNaN(numVal)) {
-                                                // Manejo de excepción para entrada no numérica (admite decimales)
-                                                throw new Error("Introducir sólo números decimales o enteros."); 
+                                               throw new Error("Introducir sólo números decimales o enteros."); 
                                            }
                                            return numVal;
                                        });
 
                 if (numeros.length !== this.MATRIZ_SIZE) {
-                    // Manejo de excepción para datos faltantes
                     throw new Error(`Datos faltantes: Matriz ${num}, Renglón ${i + 1} debe tener exactamente ${this.MATRIZ_SIZE} números.`);
                 }
                 
@@ -72,9 +55,6 @@ class OperacionesMatrices {
         });
     }
 
-    /**
-     * Realiza una operación binaria elemento por elemento.
-     */
     operacionElemento(mat1, mat2, operacion) {
         let resultado = [];
         for (let i = 0; i < this.MATRIZ_SIZE; i++) {
@@ -86,7 +66,6 @@ class OperacionesMatrices {
         return resultado;
     }
 
-    // Funciones de operación específicas
     sumarMatrices(mat1, mat2) {
         return this.operacionElemento(mat1, mat2, (a, b) => a + b);
     }
@@ -102,15 +81,11 @@ class OperacionesMatrices {
     divisionSimple(mat1, mat2) {
         return this.operacionElemento(mat1, mat2, (a, b) => {
             if (b === 0) {
-                // Manejo de excepción: División por cero (requisito)
                 return "Div/0"; 
             }
-            // Devolver hasta dos decimales para la salida clara
             return parseFloat((a / b).toFixed(2));
         });
     }
-
-    // --- Métodos de Presentación (ANÁLISIS y SALIDA) ---
 
     mostrarAnalisis(mat1, mat2) {
         let html = `
@@ -155,13 +130,11 @@ class OperacionesMatrices {
         return html;
     }
 
-    // Utilidad: Genera la tabla HTML para la matriz
     matrizToHTML(matriz) {
         let html = '<table class="matriz">';
         for (const fila of matriz) {
             html += '<tr>';
             for (const valor of fila) {
-                // Usamos toLocaleString para números con decimales, evitando el error de formato
                 const displayValue = (typeof valor === 'number' && !Number.isInteger(valor)) ? valor.toFixed(2) : valor;
                 const clase = valor === 'Div/0' ? 'error-cell' : '';
                 html += `<td class="${clase}"> ${displayValue} </td>`;
@@ -172,11 +145,9 @@ class OperacionesMatrices {
         return html;
     }
     
-    // Utilidad: Muestra errores de validación
     mostrarError(mensaje) {
         document.getElementById('resultados').innerHTML = `<p class="error">ERROR DE VALIDACIÓN: ${mensaje}</p>`;
     }
 }
 
-// Exponer la clase globalmente.
 window.OperacionesMatrices = OperacionesMatrices;
