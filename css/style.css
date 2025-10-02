@@ -1,17 +1,18 @@
-/* style.css - Diseño Elegante para el Proyecto de Arreglos y Matrices */
+/* style.css - Diseño Elegante Final para el Proyecto de Arreglos y Matrices */
 
 :root {
-    /* Variables de Color con un toque elegante */
-    --color-primary: #1e3a8a;        /* Azul profundo (Elegante) */
-    --color-secondary-bg: #f3f4f6;   /* Fondo muy sutil */
-    --color-card-bg: #ffffff;        /* Fondo blanco para tarjetas */
+    /* Variables de Color (Elegancia y usabilidad) */
+    --color-primary: #1e3a8a;        /* Azul profundo (Encabezados) */
+    --color-secondary-bg: #f3f4f6;   /* Fondo general de la página */
+    --color-card-bg: #ffffff;        /* Fondo blanco para tarjetas y menú */
     --color-text: #1f2937;           /* Texto oscuro suave */
-    --color-link: #3b82f6;           /* Azul de enlaces */
+    --color-link: #3b82f6;           /* Azul de enlaces y hover */
     --color-adicional: #ef4444;      /* Rojo de error/atención */
-    --color-success: #10b981;        /* Verde elegante para botones de acción (Iniciar) */
-    --color-gradient-start: #3b82f6; /* Degradado de botón primario */
-    --color-gradient-end: #1e3a8a;   /* Degradado de botón primario */
-    --color-gradient-secondary: #9ca3af; /* Degradado de botón secundario */
+    --color-success: #10b981;        /* Verde elegante */
+    --color-gradient-start: #3b82f6; /* Degradado de botón primario (Inicio) */
+    --color-gradient-end: #1e3a8a;   /* Degradado de botón primario (Inicio) */
+    --color-gradient-secondary: #9ca3af; /* Color de botón secundario (Volver) */
+    --color-table-border: #dee2e6;   
     --font-family-main: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
@@ -26,14 +27,14 @@ body {
     line-height: 1.6;
 }
 
-/* Estilo del Encabezado (Header) */
+/* Encabezado - Centrado y Sombra */
 header {
     background-color: var(--color-primary);
     color: white;
-    padding: 40px 40px; /* Más espacio */
+    padding: 40px 40px; 
     margin-bottom: 0; 
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Sombra más pronunciada */
-    text-align: center;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); 
+    text-align: center; /* CORRECCIÓN CLAVE: Centrar el texto */
 }
 
 header h1 {
@@ -50,12 +51,12 @@ header h1 {
 
 /* Contenido Principal (Main) - Estilo de Tarjeta Elegante */
 main {
-    max-width: 750px; /* Ancho ajustado */
+    max-width: 750px;
     margin: 50px auto; 
     padding: 40px;
     background-color: var(--color-card-bg);
-    border-radius: 15px; /* Bordes muy redondeados */
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Sombra suave y amplia */
+    border-radius: 15px; 
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); 
 }
 
 h2 {
@@ -77,21 +78,21 @@ h2 {
 #menu-list li {
     background-color: var(--color-card-bg); 
     margin: 12px 0;
-    padding: 18px; /* Más padding para mayor área de toque */
-    border-radius: 8px; /* Bordes redondeados sutiles */
+    padding: 18px; 
+    border-radius: 8px; 
     transition: all 0.2s;
     border: 1px solid #e0e7ff;
-    border-left: 6px solid #e0e7ff; /* Barra sutil */
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); /* Sombra muy ligera para el listado */
+    border-left: 6px solid #e0e7ff; 
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
     display: flex;
     align-items: center;
 }
 
 #menu-list li:hover {
-    background-color: #f7fbff; /* Color de hover más suave */
+    background-color: #f7fbff;
     border-left-color: var(--color-link); 
-    transform: translateY(-2px); /* Efecto 3D un poco más notorio */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra al hacer hover */
+    transform: translateY(-2px); 
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 #menu-list a {
@@ -106,14 +107,19 @@ h2 {
     color: var(--color-link); 
 }
 
-/* Resalta los ejercicios adicionales (8 y 9) */
+/* Resalta los ejercicios adicionales (8 y 9) - CORREGIDO: Sin rojo punteado */
 #menu-list li.adicional {
-    background-color: #fff1f2; 
-    color: var(--color-adicional);
-    border: 1px dashed var(--color-adicional); 
-    border-left-color: var(--color-adicional);
-    cursor: default;
-    opacity: 0.9;
+    background-color: var(--color-card-bg); 
+    color: var(--color-text);
+    border: 1px solid #e0e7ff;
+    border-left: 6px solid #e0e7ff;
+    cursor: pointer;
+    opacity: 1; 
+}
+
+#menu-list li.adicional a {
+    color: var(--color-link); 
+    font-weight: 600;
 }
 
 /* Estilo para el ítem "Salir" */
@@ -129,21 +135,21 @@ h2 {
     cursor: default;
 }
 
-/* --- Estilos de Botones ELEGANTES (Diseño Nuevo) --- */
+/* --- Estilos de Botones ELEGANTES (Usados en las pages/*.html) --- */
 
 button {
     padding: 12px 30px;
     margin: 20px 10px 20px 0;
     cursor: pointer;
     border: none;
-    border-radius: 8px; /* Bordes redondeados elegantes */
+    border-radius: 8px; 
     font-weight: 600;
     font-size: 1.05em;
     transition: all 0.3s ease-in-out;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* Botón Principal (INICIAR ANÁLISIS) - Diseño con Degradado */
+/* Botón Principal (INICIAR ANÁLISIS) */
 .btn-primary {
     background-image: linear-gradient(135deg, var(--color-gradient-start) 0%, var(--color-gradient-end) 100%);
     color: white;
@@ -155,7 +161,7 @@ button {
     opacity: 0.9;
 }
 
-/* Botón Secundario (VOLVER AL MENÚ) - Diseño Monocromático Suave */
+/* Botón Secundario (VOLVER AL MENÚ) */
 .btn-secondary {
     background-color: var(--color-gradient-secondary);
     color: white;
@@ -179,7 +185,7 @@ button {
 .matriz-container, .matrices-container {
     margin: 20px 0;
     padding: 15px;
-    border: 1px solid #d1d5db; /* Borde sólido para contenedores */
+    border: 1px solid #d1d5db; 
     border-radius: 8px;
     display: flex;
     flex-wrap: wrap;
@@ -193,7 +199,7 @@ table.matriz {
     margin-top: 10px;
     background-color: white;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
-    border-radius: 4px; /* Bordes de tabla suavemente redondeados */
+    border-radius: 4px; 
 }
 
 table.matriz td {
