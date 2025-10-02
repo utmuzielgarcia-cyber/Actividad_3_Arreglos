@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 3: Operaciones de Matrices 2x2</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        .error-cell {
+            background-color: var(--color-adicional);
+            color: white;
+            font-weight: 700 !important;
+        }
+    </style>
+</head>
+<body data-ejercicio="operacionesMatrices">
+    <header>
+        <h1>Ejercicio 3: Operaciones de Matrices 2x2</h1>
+        <p class="subtitle">Calcular Suma, Resta, Producto y División simple de dos matrices 2x2.</p>
+    </header>
+    <main>
+        <section id="descripcion">
+            <h2>Descripción del Problema</h2>
+            <p>La aplicación solicitará ingresar dos matrices 2x2 (renglón por renglón) y realizará las operaciones básicas elemento por elemento. <strong>Nota:</strong> Este ejercicio permite la entrada de números decimales y maneja la división por cero.</p>
+            
+            <div class="nota" style="background-color: #f7e3e5;">
+                <strong>Instrucción de Entrada:</strong><br>
+                Debe ingresar los valores del renglón <strong>separados por coma</strong>.<br>
+                <strong>Ejemplo:</strong> Para Matriz 1, Renglón 1, ingrese: <strong><code>10.5, 5</code></strong>
+            </div>
+        </section>
+
+        <button id="btnIniciar" class="btn-primary">
+            INICIAR SOLICITUD y CÁLCULO
+        </button>
+
+        <section id="resultados"></section>
+
+        <button onclick="volverAlMenu()" class="btn-secondary">
+            ← Volver al Menú Principal
+        </button>
+    </main>
+
+    <script src="../js/operacionesMatrices.js"></script>
+    <script src="../js/main.js"></script>
+</body>
+</html>
