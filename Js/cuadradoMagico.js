@@ -1,25 +1,15 @@
-/**
- * Clase CuadradoMagico para resolver el Ejercicio 2.
- * Solicita una matriz NxN, la llena con valores del usuario y verifica si es un Cuadrado Mágico.
- */
 class CuadradoMagico {
 
-    /**
-     * Punto de entrada principal para ejecutar el análisis (Entrada, Proceso, Salida).
-     */
     async iniciarAnalisis() {
         const resultadosDiv = document.getElementById('resultados');
         resultadosDiv.innerHTML = '';
         
         try {
-            // 1. ENTRADA: Solicitar el tamaño N y luego los valores de la matriz
             const N = await this.solicitarTamanio();
             const matriz = await this.llenarMatriz(N);
             
-            // 2. PROCESO: Análisis y verificación
             const { esMagico, constanteMagica } = this.verificarCuadradoMagico(matriz, N);
 
-            // 3. SALIDA: Mostrar el análisis y el resultado
             resultadosDiv.innerHTML = this.mostrarAnalisis(matriz, N);
             resultadosDiv.innerHTML += this.mostrarResultados(esMagico, constanteMagica);
 
@@ -28,12 +18,6 @@ class CuadradoMagico {
         }
     }
 
-    // --- Métodos de Entrada y Validación ---
-
-    /**
-     * Solicita el tamaño N (debe ser entero positivo).
-     * @returns {Promise<number>} El tamaño N validado.
-     */
     solicitarTamanio() {
         return new Promise((resolve, reject) => {
             let N = 0;
@@ -44,7 +28,6 @@ class CuadradoMagico {
                     return reject(new Error("La entrada de tamaño no puede estar vacía o fue cancelada."));
                 }
                 
-                // Validación: numérico y entero positivo
                 N = parseInt(entrada);
                 if (isNaN(N) || N <= 1) {
                     alert("ERROR: Introducir sólo un número entero mayor a 1.");
@@ -56,11 +39,6 @@ class CuadradoMagico {
         });
     }
 
-    /**
-     * Solicita al usuario los valores para la matriz NxN, fila por fila.
-     * @param {number} N - El tamaño de la matriz.
-     * @returns {Promise<number[][]>} La matriz NxN llena.
-     */
     llenarMatriz(N) {
         return new Promise((resolve, reject) => {
             let matriz = [];
@@ -72,12 +50,11 @@ class CuadradoMagico {
                     return reject(new Error("Operación cancelada durante el llenado de la matriz."));
                 }
                 
-                // Procesar y validar la entrada (debe ser numérico entero)
                 const numeros = entrada.split(/[\s,]+/)
                                        .map(val => {
                                            const numVal = parseInt(val.trim());
                                            if (isNaN(numVal)) {
-                                                throw new Error("Introducir sólo números enteros."); 
+                                               throw new Error("Introducir sólo números enteros."); 
                                            }
                                            return numVal;
                                        });
@@ -92,22 +69,14 @@ class CuadradoMagico {
         });
     }
 
-    // --- Métodos de Proceso y Verificación ---
-
-    /**
-     * Verifica si la matriz es un Cuadrado Mágico.
-     */
     verificarCuadradoMagico(matriz, N) {
         let esMagico = true;
         let constanteMagica = 0;
         
-        // 1. Calcular la suma de la primera fila para obtener la constante esperada
         if (N > 0) {
-            // El método reduce() suma todos los elementos de la primera fila
             constanteMagica = matriz[0].reduce((sum, val) => sum + val, 0);
         }
 
-        // 2. Verificar Filas (comenzando desde la segunda fila)
         for (let i = 1; i < N; i++) {
             if (matriz[i].reduce((sum, val) => sum + val, 0) !== constanteMagica) {
                 esMagico = false;
@@ -116,7 +85,6 @@ class CuadradoMagico {
         }
         if (!esMagico) return { esMagico: false, constanteMagica: constanteMagica };
 
-        // 3. Verificar Columnas
         for (let j = 0; j < N; j++) {
             let sumaColumna = 0;
             for (let i = 0; i < N; i++) {
@@ -129,7 +97,6 @@ class CuadradoMagico {
         }
         if (!esMagico) return { esMagico: false, constanteMagica: constanteMagica };
 
-        // 4. Verificar Diagonal Principal
         let sumaDiagPrincipal = 0;
         for (let i = 0; i < N; i++) {
             sumaDiagPrincipal += matriz[i][i];
@@ -139,7 +106,6 @@ class CuadradoMagico {
         }
         if (!esMagico) return { esMagico: false, constanteMagica: constanteMagica };
 
-        // 5. Verificar Diagonal Secundaria
         let sumaDiagSecundaria = 0;
         for (let i = 0; i < N; i++) {
             sumaDiagSecundaria += matriz[i][N - 1 - i];
@@ -150,8 +116,6 @@ class CuadradoMagico {
 
         return { esMagico, constanteMagica };
     }
-
-    // --- Métodos de Presentación (ANÁLISIS y SALIDA) ---
 
     mostrarAnalisis(matriz, N) {
         let html = `
@@ -183,7 +147,6 @@ class CuadradoMagico {
         }
     }
 
-    // Utilidad: Genera la tabla HTML para la matriz
     matrizToHTML(matriz) {
         let html = '<table class="matriz">';
         for (const fila of matriz) {
@@ -197,11 +160,9 @@ class CuadradoMagico {
         return html;
     }
     
-    // Utilidad: Muestra errores de validación
     mostrarError(mensaje) {
         document.getElementById('resultados').innerHTML = `<p class="error">ERROR DE VALIDACIÓN: ${mensaje}</p>`;
     }
 }
 
-// Exponer la clase globalmente.
 window.CuadradoMagico = CuadradoMagico;
