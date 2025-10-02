@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 6: Análisis de Ventas</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body data-ejercicio="analisisVentas">
+    <header>
+        <h1>Ejercicio 6: Análisis de Ventas</h1>
+        <p class="subtitle">Encontrar la venta máxima, mínima, total y la suma de ventas por día.</p>
+    </header>
+    <main>
+        <section id="descripcion">
+            <h2>Descripción del Problema</h2>
+            <p>La aplicación analiza una matriz predefinida de 12 filas (meses) por 7 columnas (días de la semana). Se identifican los valores extremos (mayor/menor venta) con su ubicación (mes y día), la venta total y la suma acumulada por cada día de la semana.</p>
+            <p class="nota">Nota: Los datos de la matriz se toman directamente del código fuente para el análisis.</p>
+        </section>
+
+        <button id="btnIniciar" class="btn-primary">
+            INICIAR ANÁLISIS DE DATOS
+        </button>
+
+        <section id="resultados"></section>
+
+        <button onclick="volverAlMenu()" class="btn-secondary">
+            ← Volver al Menú Principal
+        </button>
+    </main>
+
+    <script src="../js/analisisVentas.js"></script>
+    <script src="../js/main.js"></script>
+</body>
+</html>
