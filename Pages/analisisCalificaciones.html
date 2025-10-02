@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 7: Análisis de Calificaciones</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body data-ejercicio="analisisCalificaciones">
+    <header>
+        <h1>Ejercicio 7: Análisis de Calificaciones</h1>
+        <p class="subtitle">Calcular promedios por alumno, extremos y la distribución de calificaciones finales.</p>
+    </header>
+    <main>
+        <section id="descripcion">
+            <h2>Descripción del Problema</h2>
+            <p>La aplicación solicitará ingresar las calificaciones de 9 alumnos (cada uno con 4 parciales). Los resultados incluyen promedios individuales, extremos, conteo de parciales reprobados (menores a 7.0) y la distribución final de notas por rangos.</p>
+            
+            <div class="nota" style="background-color: #f7e3e5;">
+                <strong>Instrucción de Entrada:</strong><br>
+                Debe ingresar las 4 calificaciones de cada alumno <strong>separadas por coma</strong>. Se admiten valores decimales (Ej: 8.5, 7.0, 6.5, 9.0).
+            </div>
+        </section>
+
+        <button id="btnIniciar" class="btn-primary">
+            INICIAR SOLICITUD y ANÁLISIS
+        </button>
+
+        <section id="resultados"></section>
+
+        <button onclick="volverAlMenu()" class="btn-secondary">
+            ← Volver al Menú Principal
+        </button>
+    </main>
+
+    <script src="../js/analisisCalificaciones.js"></script>
+    <script src="../js/main.js"></script>
+</body>
+</html>
