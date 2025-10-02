@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 8: Multiplicación de Matrices</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body data-ejercicio="multiplicacionMatrices">
+    <header>
+        <h1>Ejercicio 8: Multiplicación de Matrices (Alto Nivel)</h1>
+        <p class="subtitle">Implementación del producto matricial A x B. (A: N x M, B: M x P)</p>
+    </header>
+    <main>
+        <section id="descripcion">
+            <h2>Descripción del Problema</h2>
+            <p>La aplicación solicitará las dimensiones (N, M, P) y luego los valores de la Matriz A (N x M) y la Matriz B (M x P).</p>
+            <p>El programa realizará la multiplicación de A por B. Se requiere validar que el número de columnas de A sea igual al número de filas de B para que la operación sea posible.</p>
+        </section>
+
+        <button id="btnIniciar" class="btn-primary">
+            INICIAR SOLICITUD y CÁLCULO MATRICIAL
+        </button>
+
+        <section id="resultados"></section>
+
+        <button onclick="volverAlMenu()" class="btn-secondary">
+            ← Volver al Menú Principal
+        </button>
+    </main>
+
+    <script src="../js/multiplicacionMatrices.js"></script>
+    <script src="../js/main.js"></script>
+</body>
+</html>
