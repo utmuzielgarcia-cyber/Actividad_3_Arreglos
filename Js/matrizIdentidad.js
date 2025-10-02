@@ -1,24 +1,14 @@
-/**
- * Clase MatrizIdentidad para resolver el Ejercicio 4.
- * Genera una matriz cuadrada N x N con 1's en la diagonal principal y 0's en el resto.
- */
 class MatrizIdentidad {
 
-    /**
-     * Punto de entrada principal para ejecutar el análisis (Entrada, Proceso, Salida).
-     */
     async iniciarAnalisis() {
         const resultadosDiv = document.getElementById('resultados');
         resultadosDiv.innerHTML = '';
         
         try {
-            // 1. ENTRADA: Solicitar el tamaño N
             const size = await this.solicitarTamanio();
             
-            // 2. PROCESO: Generar la matriz
             const matriz = this.generarMatrizIdentidad(size);
 
-            // 3. SALIDA: Mostrar el análisis y el resultado
             resultadosDiv.innerHTML = this.mostrarAnalisis(size);
             resultadosDiv.innerHTML += this.mostrarResultados(matriz);
 
@@ -27,25 +17,19 @@ class MatrizIdentidad {
         }
     }
 
-    /**
-     * Solicita al usuario el tamaño N para la matriz cuadrada N x N.
-     * @returns {Promise<number>} El tamaño N validado.
-     */
     solicitarTamanio() {
         return new Promise((resolve, reject) => {
             let n = 0;
             while (n <= 0) {
-                // Simulación de entrada de datos claros (requisito)
                 const entrada = prompt("Introduzca el tamaño (N) de la matriz cuadrada (N x N, Ej: 3 para 3x3):");
                 
                 if (entrada === null || entrada.trim() === "") {
                     return reject(new Error("La entrada está vacía o fue cancelada."));
                 }
                 
-                // Validación: numérico y entero positivo
                 n = parseInt(entrada);
                 if (isNaN(n) || n <= 0) {
-                    alert("ERROR: Introducir sólo números enteros positivos."); // Mensaje de excepción
+                    alert("ERROR: Introducir sólo números enteros positivos.");
                     continue;
                 }
                 break;
@@ -54,28 +38,20 @@ class MatrizIdentidad {
         });
     }
 
-    /**
-     * Genera la matriz de identidad N x N.
-     * @param {number} N - El tamaño de la matriz.
-     * @returns {number[][]} La matriz de identidad.
-     */
     generarMatrizIdentidad(N) {
         let matriz = [];
         for (let i = 0; i < N; i++) {
             matriz[i] = [];
             for (let j = 0; j < N; j++) {
-                // Lógica clave: Si la fila (i) es igual a la columna (j), es la diagonal principal (1)
                 if (i === j) {
-                    matriz[i][j] = 1; // Diagonal principal con 1's
+                    matriz[i][j] = 1; 
                 } else {
-                    matriz[i][j] = 0; // Demás posiciones con 0's
+                    matriz[i][j] = 0; 
                 }
             }
         }
         return matriz;
     }
-
-    // --- Métodos de Presentación (ANÁLISIS y SALIDA) ---
 
     mostrarAnalisis(size) {
         let html = `
@@ -93,13 +69,11 @@ class MatrizIdentidad {
         return `<div class="matriz-container">${this.matrizToHTML(matriz)}</div>`;
     }
 
-    // Utilidad: Genera la tabla HTML para la matriz
     matrizToHTML(matriz) {
         let html = '<table class="matriz">';
         for (const fila of matriz) {
             html += '<tr>';
             for (const valor of fila) {
-                // Resalta visualmente el 1's para enfatizar la diagonal
                 const clase = valor === 1 ? 'diagonal-uno' : '';
                 html += `<td class="${clase}">${valor}</td>`;
             }
@@ -109,11 +83,9 @@ class MatrizIdentidad {
         return html;
     }
     
-    // Utilidad: Muestra errores de validación
     mostrarError(mensaje) {
         document.getElementById('resultados').innerHTML = `<p class="error">ERROR DE VALIDACIÓN: ${mensaje}</p>`;
     }
 }
 
-// Exponer la clase globalmente.
 window.MatrizIdentidad = MatrizIdentidad;
