@@ -24,15 +24,18 @@ function setupEjercicio(nombreEjercicio) {
     const resultadosDiv = document.getElementById('resultados');
     
     // Mapeo de identificadores a nombres de Clases/Archivos (POO)
+    // Incluye los 7 Obligatorios + los 2 Adicionales.
     const ejercicios = {
         'conteoCeros': 'ConteoCeros',            
         'cuadradoMagico': 'CuadradoMagico',       
         'operacionesMatrices': 'OperacionesMatrices', 
         'matrizIdentidad': 'MatrizIdentidad',   
         'sumaPromedio': 'SumaPromedio', 
-        'analisisVentas': 'AnalisisVentas', // <<-- EJERCICIO 6 AGREGADO
-        'analisisCalificaciones': 'AnalisisCalificaciones', // Ejercicio 7 (Pendiente)
-        // Agrega aquí los ejercicios adicionales cuando los implementemos
+        'analisisVentas': 'AnalisisVentas',
+        'analisisCalificaciones': 'AnalisisCalificaciones',
+        // EJERCICIOS ADICIONALES (ALTO NIVEL)
+        'multiplicacionMatrices': 'MultiplicacionMatrices', // Ejercicio 8
+        'transpuestaSimetria': 'TranspuestaSimetria'       // Ejercicio 9
     };
 
     const className = ejercicios[nombreEjercicio];
@@ -54,7 +57,7 @@ function setupEjercicio(nombreEjercicio) {
         if (resultadosDiv) {
              const errorMsg = className 
                  ? `Error de carga: La clase '${className}' no se cargó correctamente (verifique el script tag en el HTML).`
-                 : `Error de mapeo: El ID '${nombreEjercicio}' no está definido en main.js.`;
+                 : `Error de mapeo: El ID '${nombreEjercicio}' no está definido en main.js o la clase no existe.`;
              
              resultadosDiv.innerHTML = `<p class="error">Error de configuración: ${errorMsg}</p>`;
         }
