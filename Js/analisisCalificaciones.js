@@ -1,33 +1,22 @@
-/**
- * Clase AnalisisCalificaciones para resolver el Ejercicio 7.
- * CORREGIDO: Solicita las 36 calificaciones al usuario.
- * Analiza la matriz (9 Alumnos x 4 Parciales) para obtener promedios y distribución.
- */
 class AnalisisCalificaciones {
 
     constructor() {
-        this.FILAS = 9; // 9 Alumnos
-        this.COLUMNAS = 4; // 4 Parciales
+        this.FILAS = 9;
+        this.COLUMNAS = 4;
         this.PROMEDIOS_APROBATORIOS = 7.0;
     }
 
-    /**
-     * Punto de entrada principal para ejecutar el análisis (Entrada, Proceso, Salida).
-     */
     async iniciarAnalisis() {
         const resultadosDiv = document.getElementById('resultados');
         resultadosDiv.innerHTML = '';
         
         try {
-            // 1. ENTRADA: Solicitar las 36 calificaciones al usuario (9 filas de 4 columnas)
             const matriz = await this.solicitarMatriz();
 
-            // 2. PROCESO: Análisis
             const { promediosAlumno, totalParcialesReprobados } = this.calcularPromediosYReprobados(matriz);
             const { promedioMasAlto, promedioMasBajo } = this.encontrarExtremos(promediosAlumno);
             const distribucionFinal = this.calcularDistribucion(promediosAlumno);
 
-            // 3. SALIDA: Mostrar el análisis y el resultado
             resultadosDiv.innerHTML = this.mostrarAnalisis(matriz);
             resultadosDiv.innerHTML += this.mostrarResultados(
                 promediosAlumno,
@@ -42,10 +31,6 @@ class AnalisisCalificaciones {
         }
     }
 
-    /**
-     * Solicita al usuario los valores para la matriz 9x4, fila por fila (alumno por alumno).
-     * @returns {Promise<number[][]>} La matriz 9x4 llena con números (admite decimales).
-     */
     solicitarMatriz() {
         return new Promise((resolve, reject) => {
             let matriz = [];
@@ -57,19 +42,16 @@ class AnalisisCalificaciones {
                     return reject(new Error("Operación cancelada por el usuario."));
                 }
                 
-                // Procesar y validar la entrada (usando parseFloat para admitir decimales)
                 const numeros = entrada.split(/[\s,]+/)
                                        .map(val => {
                                            const numVal = parseFloat(val.trim());
                                            if (isNaN(numVal) || numVal < 0 || numVal > 10) {
-                                                // Manejo de excepción: Entrada no numérica o fuera de rango (0-10)
-                                                throw new Error("Introducir sólo números (decimales o enteros) entre 0 y 10."); 
+                                               throw new Error("Introducir sólo números (decimales o enteros) entre 0 y 10."); 
                                            }
                                            return numVal;
                                        });
 
                 if (numeros.length !== this.COLUMNAS) {
-                    // Manejo de excepción para datos faltantes
                     throw new Error(`Datos faltantes: Debe ingresar exactamente ${this.COLUMNAS} calificaciones para el Alumno ${i + 1}.`);
                 }
                 
@@ -79,11 +61,6 @@ class AnalisisCalificaciones {
         });
     }
 
-    // --- Lógica de Análisis (Se mantienen las funciones de cálculo) ---
-
-    /**
-     * Calcula el promedio por cada alumno y cuenta el total de parciales reprobados (< 7.0).
-     */
     calcularPromediosYReprobados(matriz) {
         let promediosAlumno = [];
         let totalParcialesReprobados = 0;
@@ -94,21 +71,16 @@ class AnalisisCalificaciones {
                 const calificacion = matriz[i][j];
                 sumaFila += calificacion;
                 
-                // Contar parciales reprobados (d)
                 if (calificacion < 7.0) {
                     totalParcialesReprobados++;
                 }
             }
-            // Almacenar el promedio final (a)
             promediosAlumno.push(parseFloat((sumaFila / this.COLUMNAS).toFixed(2)));
         }
         
         return { promediosAlumno, totalParcialesReprobados };
     }
     
-    /**
-     * Encuentra el promedio más alto (b) y más bajo (c).
-     */
     encontrarExtremos(promedios) {
         if (promedios.length === 0) return { promedioMasAlto: 0, promedioMasBajo: 0 };
         
@@ -118,11 +90,7 @@ class AnalisisCalificaciones {
         };
     }
 
-    /**
-     * Calcula la distribución de calificaciones finales (promedios) (e).
-     */
     calcularDistribucion(promedios) {
-        // Rangos definidos en la práctica
         const distribucion = {
             '0.0-4.9': 0,
             '5.0-5.9': 0,
@@ -150,8 +118,6 @@ class AnalisisCalificaciones {
         
         return distribucion;
     }
-
-    // --- Métodos de Presentación (ANÁLISIS y SALIDA) ---
 
     mostrarAnalisis(matriz) {
         let html = `
@@ -207,7 +173,6 @@ class AnalisisCalificaciones {
         
         html += '<thead><tr><th>Alumno</th><th>Parcial 1</th><th>Parcial 2</th><th>Parcial 3</th><th>Parcial 4</th></tr></thead><tbody>';
 
-        // Filas de Calificaciones
         for (let i = 0; i < this.FILAS; i++) {
             html += `<tr><td style="text-align: left;"><strong>${i + 1}</strong></td>`;
             for (let j = 0; j < this.COLUMNAS; j++) {
@@ -219,11 +184,9 @@ class AnalisisCalificaciones {
         return html;
     }
     
-    // Utilidad: Muestra errores de validación
     mostrarError(mensaje) {
         document.getElementById('resultados').innerHTML = `<p class="error">ERROR: ${mensaje}</p>`;
     }
 }
 
-// Exponer la clase globalmente.
 window.AnalisisCalificaciones = AnalisisCalificaciones;
