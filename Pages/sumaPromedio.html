@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ejercicio 5: Suma y Promedio 5x10</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+<body data-ejercicio="sumaPromedio">
+    <header>
+        <h1>Ejercicio 5: Suma y Promedio Matriz 5x10</h1>
+        <p class="subtitle">Calcular la suma y el promedio por cada fila y cada columna.</p>
+    </header>
+    <main>
+        <section id="descripcion">
+            <h2>Descripción del Problema</h2>
+            <p>La aplicación llenará una matriz 5 x 10 con números aleatorios.</p>
+            <ul>
+                <li>La suma de las filas se almacena en el **Arreglo A** y el promedio en **Arreglo B**.</li>
+                <li>La suma de las columnas se almacena en el **Arreglo C** y el promedio en **Arreglo D**.</li>
+            </ul>
+        </section>
+
+        <button id="btnIniciar" class="btn-primary">
+            INICIAR GENERACIÓN y CÁLCULO
+        </button>
+
+        <section id="resultados"></section>
+
+        <button onclick="volverAlMenu()" class="btn-secondary">
+            ← Volver al Menú Principal
+        </button>
+    </main>
+
+    <script src="../js/sumaPromedio.js"></script>
+    <script src="../js/main.js"></script>
+</body>
+</html>
