@@ -1,8 +1,7 @@
 /**
  * main.js - Controlador central de la aplicación de Arreglos y Matrices.
- * Sigue el patrón POO/modular del ejemplo de recursividad.
- * * Lógica: Detecta el ejercicio actual usando el atributo 'data-ejercicio' 
- * en el body del HTML y enlaza el botón de inicio con la clase JavaScript apropiada.
+ * Lógica: Detecta el ejercicio actual usando el atributo 'data-ejercicio' 
+ * en el body del HTML y enlaza el botón de inicio con la clase JavaScript apropiada (POO).
  */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -25,20 +24,21 @@ function setupEjercicio(nombreEjercicio) {
     const resultadosDiv = document.getElementById('resultados');
     
     // Mapeo de identificadores a nombres de Clases/Archivos (POO)
-    // ESTE MAPEO DEBE CRECER CON CADA NUEVO EJERCICIO QUE IMPLEMENTES.
     const ejercicios = {
-        'conteoCeros': 'ConteoCeros',             // Ejercicio 1 
-        'cuadradoMagico': 'CuadradoMagico',       // Ejercicio 2 (Pendiente)
-        'operacionesMatrices': 'OperacionesMatrices', // Ejercicio 3 (Pendiente)
-        'matrizIdentidad': 'MatrizIdentidad',     // <<--- CORRECCIÓN AGREGADA
-        // ... (Agrega más ejercicios aquí: sumaPromedio, analisisVentas, etc.)
+        'conteoCeros': 'ConteoCeros',            
+        'cuadradoMagico': 'CuadradoMagico',       
+        'operacionesMatrices': 'OperacionesMatrices', 
+        'matrizIdentidad': 'MatrizIdentidad',   
+        'sumaPromedio': 'SumaPromedio', 
+        'analisisVentas': 'AnalisisVentas', // <<-- EJERCICIO 6 AGREGADO
+        'analisisCalificaciones': 'AnalisisCalificaciones', // Ejercicio 7 (Pendiente)
+        // Agrega aquí los ejercicios adicionales cuando los implementemos
     };
 
     const className = ejercicios[nombreEjercicio];
 
     // 2. Validación y enlazado
-    // Se valida: 1) Que el botón exista, 2) Que haya un nombre de clase mapeado, 
-    // 3) Que la clase haya sido cargada globalmente por su respectivo script (.js)
+    // Verifica que el botón exista y que la clase de lógica haya sido cargada globalmente.
     if (btnIniciar && className && typeof window[className] === 'function') {
         // Creamos una instancia de la clase de lógica (POO)
         const instanciaEjercicio = new window[className]();
@@ -50,11 +50,10 @@ function setupEjercicio(nombreEjercicio) {
         };
         
     } else {
-        // Muestra un error si la configuración falla.
+        // Muestra un error si la configuración falla (por mapeo o script no cargado).
         if (resultadosDiv) {
-             // Verificamos si el className se encontró en el mapeo, pero no se cargó el script.
              const errorMsg = className 
-                 ? `Error de carga: La clase '${className}' no se cargó correctamente (verifique el script tag).`
+                 ? `Error de carga: La clase '${className}' no se cargó correctamente (verifique el script tag en el HTML).`
                  : `Error de mapeo: El ID '${nombreEjercicio}' no está definido en main.js.`;
              
              resultadosDiv.innerHTML = `<p class="error">Error de configuración: ${errorMsg}</p>`;
