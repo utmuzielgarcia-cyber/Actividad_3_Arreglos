@@ -1,26 +1,16 @@
-/**
- * Clase TranspuestaSimetria para resolver el Ejercicio 9 (Adicional de Alto Nivel).
- * Calcula la transpuesta de una matriz cuadrada y verifica si es simétrica.
- */
 class TranspuestaSimetria {
 
-    /**
-     * Punto de entrada principal para ejecutar el análisis (Entrada, Proceso, Salida).
-     */
     async iniciarAnalisis() {
         const resultadosDiv = document.getElementById('resultados');
         resultadosDiv.innerHTML = '';
 
         try {
-            // 1. ENTRADA: Solicitar el tamaño N y luego los valores de la matriz
             const N = await this.solicitarTamanio();
             const matrizOriginal = await this.llenarMatriz(N);
             
-            // 2. PROCESO: Transposición y Verificación
             const matrizTranspuesta = this.calcularTranspuesta(matrizOriginal, N);
             const esSimetrica = this.verificarSimetria(matrizOriginal, matrizTranspuesta, N);
 
-            // 3. SALIDA: Mostrar el análisis y el resultado
             resultadosDiv.innerHTML = this.mostrarAnalisis(matrizOriginal, N);
             resultadosDiv.innerHTML += this.mostrarResultados(matrizTranspuesta, esSimetrica);
 
@@ -29,12 +19,6 @@ class TranspuestaSimetria {
         }
     }
 
-    // --- Métodos de Entrada y Validación ---
-
-    /**
-     * Solicita el tamaño N (debe ser entero positivo para una matriz cuadrada).
-     * @returns {Promise<number>} El tamaño N validado.
-     */
     solicitarTamanio() {
         return new Promise((resolve, reject) => {
             let N = 0;
@@ -56,9 +40,6 @@ class TranspuestaSimetria {
         });
     }
 
-    /**
-     * Solicita al usuario los valores para una matriz NxN.
-     */
     llenarMatriz(N) {
         return new Promise((resolve, reject) => {
             let matriz = [];
@@ -70,10 +51,9 @@ class TranspuestaSimetria {
                 
                 const numeros = entrada.split(/[\s,]+/)
                                        .map(val => {
-                                           // Usamos parseFloat para admitir decimales en un problema de alto nivel
                                            const numVal = parseFloat(val.trim());
                                            if (isNaN(numVal)) {
-                                                throw new Error("Introducir sólo números (decimales o enteros)."); 
+                                               throw new Error("Introducir sólo números (decimales o enteros)."); 
                                            }
                                            return numVal;
                                        });
@@ -88,33 +68,20 @@ class TranspuestaSimetria {
         });
     }
 
-    // --- Lógica del Proceso ---
-
-    /**
-     * Calcula la matriz transpuesta.
-     * @param {number[][]} original - La matriz N x N original.
-     * @param {number} N - El tamaño.
-     * @returns {number[][]} La matriz Transpuesta.
-     */
     calcularTranspuesta(original, N) {
         let transpuesta = [];
         for (let i = 0; i < N; i++) {
             transpuesta[i] = [];
             for (let j = 0; j < N; j++) {
-                // Lógica clave: Transponer significa A[i][j] = A_T[j][i]
                 transpuesta[i][j] = original[j][i]; 
             }
         }
         return transpuesta;
     }
 
-    /**
-     * Verifica si la matriz es simétrica (A = A_T).
-     */
     verificarSimetria(original, transpuesta, N) {
         for (let i = 0; i < N; i++) {
             for (let j = 0; j < N; j++) {
-                // La verificación es directa: si algún elemento es diferente, no es simétrica
                 if (original[i][j] !== transpuesta[i][j]) {
                     return false;
                 }
@@ -122,8 +89,6 @@ class TranspuestaSimetria {
         }
         return true;
     }
-
-    // --- Métodos de Presentación ---
 
     mostrarAnalisis(matriz, N) {
         let html = `
@@ -155,13 +120,11 @@ class TranspuestaSimetria {
         `;
     }
 
-    // Utilidad: Genera la tabla HTML para la matriz
     matrizToHTML(matriz) {
         let html = '<table class="matriz">';
         for (const fila of matriz) {
             html += '<tr>';
             for (const valor of fila) {
-                // Redondeamos a 2 decimales solo para presentación
                 const displayValue = parseFloat(valor).toFixed(2).replace(/\.00$/, ''); 
                 html += `<td>${displayValue}</td>`;
             }
@@ -176,5 +139,4 @@ class TranspuestaSimetria {
     }
 }
 
-// Exponer la clase globalmente.
 window.TranspuestaSimetria = TranspuestaSimetria;
